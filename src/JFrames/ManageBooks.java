@@ -39,7 +39,7 @@ public class ManageBooks extends javax.swing.JFrame {
     
     public void setBookDetailsToTable(){
         try{
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library_management_system","root","");
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("select * from book_details");

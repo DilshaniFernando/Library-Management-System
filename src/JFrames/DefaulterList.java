@@ -10,7 +10,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.Date;
+import java.sql.Date;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -36,7 +36,7 @@ public class DefaulterList extends javax.swing.JFrame {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library_management_system","root","");
             PreparedStatement pst = con.prepareStatement("select * from issue_book_details where due_date < ? and ststus = ?");
-            pst.setDate(1, (java.sql.Date) todaysDate);
+            pst.setDate(1, todaysDate);
             pst.setString(2, "Pending");
             ResultSet rs = pst.executeQuery();
             
