@@ -124,16 +124,16 @@ public class HomePage extends javax.swing.JFrame {
     public void showPieChart(){
         
         //create dataset
-      DefaultPieDataset barDataset = new DefaultPieDataset( );
+      DefaultPieDataset Dataset = new DefaultPieDataset( );
       
       try{
           Connection con = DBConnection.getConnection();
-          String sql = "select book_name, count(*) as isseu_count from issue_book_details group by book_Id";
+          String sql = "select * from book_details";
           Statement sts = con.createStatement();
           ResultSet rs = sts.executeQuery(sql);
           
           while(rs.next()){
-              barDataset.setValue(rs.getString("book_name"), new Double(rs.getDouble("issue_count")));
+             Dataset.setValue(rs.getString("book_name"),Integer.parseInt(rs.getString("quantity"))); 
           }
           
       }catch(Exception e){
@@ -141,7 +141,7 @@ public class HomePage extends javax.swing.JFrame {
       }
       
       //create chart
-       JFreeChart piechart = ChartFactory.createPieChart("Issue Book Details",barDataset, false,true,false);//explain
+       JFreeChart piechart = ChartFactory.createPieChart("Book Details",Dataset, false,true,false);//explain
       
         PiePlot piePlot =(PiePlot) piechart.getPlot();
       
